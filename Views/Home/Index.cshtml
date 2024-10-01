@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Calcular Días Hábiles";
+}
+@model DateRangeViewModel
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+            <h2>Calcular días hábiles</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Index" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="StartDate">Fecha de inicio</label>
+                            <input class="form-control" asp-for="StartDate" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" asp-for="EndDate">Fecha de fin</label>
+                            <input class="form-control" asp-for="EndDate" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info text-white px-4">Calcular</button>
+                </div>
+            </form>
+
+            @if (Model != null && Model.BusinessDays > 0)
+            {
+                <div class="alert alert-info text-center mt-4">
+                    <strong>Días hábiles: </strong>@Model.BusinessDays
+                </div>
+            }
+        </div>
+    </div>
+</div>
